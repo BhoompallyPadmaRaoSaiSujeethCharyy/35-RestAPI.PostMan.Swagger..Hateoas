@@ -1,0 +1,129 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Api Documentation",
+		"version": "1.0",
+		"title": "Api Documentation",
+		"termsOfService": "urn:tos",
+		"contact": {
+			
+		},
+		"license": {
+			"name": "Apache 2.0",
+			"url": "http://www.apache.org/licenses/LICENSE-2.0"
+		}
+	},
+	"host": "localhost:9054",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "gender-controller",
+			"description": "Gender Controller"
+		}
+	],
+	"paths": {
+		"/getAllGenderList": {
+			"get": {
+				"tags": [
+					"gender-controller"
+				],
+				"summary": "getAllGenderList",
+				"operationId": "getAllGenderListUsingGET",
+				"produces": [
+					"application/json",
+					"application/xml"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "object"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/getGender/{genderID1}": {
+			"get": {
+				"tags": [
+					"gender-controller"
+				],
+				"summary": "getGender",
+				"operationId": "getGenderUsingGET",
+				"produces": [
+					"application/json",
+					"application/xml"
+				],
+				"parameters": [
+					{
+						"name": "genderID1",
+						"in": "path",
+						"description": "genderID1",
+						"required": true,
+						"type": "integer",
+						"format": "int32"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Gender"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Gender": {
+			"type": "object",
+			"properties": {
+				"genderCode": {
+					"type": "string"
+				},
+				"genderId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"genderName": {
+					"type": "string"
+				},
+				"links": {
+					"$ref": "#/definitions/Links"
+				}
+			},
+			"title": "Gender"
+		},
+		"Links": {
+			"type": "object",
+			"properties": {
+				"empty": {
+					"type": "boolean"
+				}
+			},
+			"title": "Links"
+		}
+	}
+}
